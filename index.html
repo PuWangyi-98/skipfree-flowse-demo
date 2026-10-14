@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skip-Free FlowSE Demo</title>
+<style>
+  :root { --bg:#ffffff; --fg:#1d1d1f; --muted:#6b6b70; --line:#e3e3e8; --head:#f6f6f8; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#141416; --fg:#ececf0; --muted:#a0a0a8; --line:#2c2c31; --head:#1d1d21; }
+  }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:16px/1.55 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  main { max-width:1400px; margin:0 auto; padding:32px 16px 64px; }
+  h1 { font-size:1.5rem; line-height:1.3; margin:0 0 8px; }
+  .authors { margin:0; } .affil, .meta { color:var(--muted); font-size:0.85rem; }
+  .note { max-width:900px; }
+  .wrap { overflow-x:auto; border:1px solid var(--line); border-radius:8px; }
+  table { border-collapse:collapse; min-width:100%; }
+  th, td { border-bottom:1px solid var(--line); padding:10px; vertical-align:top; text-align:center; }
+  thead th { background:var(--head); position:sticky; top:0; font-size:0.9rem; }
+  tbody th { text-align:left; white-space:nowrap; font-weight:600; font-size:0.9rem; }
+  td img { display:block; width:220px; height:110px; margin:0 auto 6px; border-radius:4px; }
+  audio { width:220px; height:32px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Beyond U-Net: A Latent-Representation-Aligned Skip-Free Backbone for Flow-Matching Speech Enhancement</h1>
+  <p class="authors">Wangyi Pu and Michele Scarpiniti</p>
+  <p class="affil">Department of Information Engineering, Electronics and Telecommunications, Sapienza University of Rome, Italy</p>
+  <h2>Audio samples on VoiceBank-DEMAND</h2>
+  <p class="note">The 8 test utterances below were drawn at random (seed&nbsp;0) from the
+  VB-DMD test set, one per speaker (p232, p257) and per input-SNR level. They were not selected
+  by output quality. Each row shares one spectrogram colour scale (80&nbsp;dB range, 0&ndash;8&nbsp;kHz).
+  All outputs are at 16&nbsp;kHz and have not been loudness-normalized.</p>
+  <div class="wrap">
+  <table>
+    <thead><tr><th scope="col">Utterance</th><th scope="col">Noisy</th><th scope="col">SGMSE+ [1]<br><span class="meta">NFE = 60</span></th><th scope="col">FlowSE [2]<br><span class="meta">NFE = 5</span></th><th scope="col">FlowSE (LRA, proposed)<br><span class="meta">NFE = 5</span></th><th scope="col">Clean</th></tr></thead>
+    <tbody>
+<tr><th scope="row">p232_369<br><span class="meta">speaker p232, input SNR 1.7 dB</span></th><td><img src="spec/p232_369/noisy.png" alt="noisy spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_369/noisy.wav"></audio></td><td><img src="spec/p232_369/sgmse.png" alt="sgmse spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_369/sgmse.wav"></audio></td><td><img src="spec/p232_369/flowse_lee.png" alt="flowse_lee spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_369/flowse_lee.wav"></audio></td><td><img src="spec/p232_369/proposed.png" alt="proposed spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_369/proposed.wav"></audio></td><td><img src="spec/p232_369/clean.png" alt="clean spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_369/clean.wav"></audio></td></tr>
+<tr><th scope="row">p232_270<br><span class="meta">speaker p232, input SNR 6.5 dB</span></th><td><img src="spec/p232_270/noisy.png" alt="noisy spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_270/noisy.wav"></audio></td><td><img src="spec/p232_270/sgmse.png" alt="sgmse spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_270/sgmse.wav"></audio></td><td><img src="spec/p232_270/flowse_lee.png" alt="flowse_lee spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_270/flowse_lee.wav"></audio></td><td><img src="spec/p232_270/proposed.png" alt="proposed spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_270/proposed.wav"></audio></td><td><img src="spec/p232_270/clean.png" alt="clean spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_270/clean.wav"></audio></td></tr>
+<tr><th scope="row">p232_223<br><span class="meta">speaker p232, input SNR 10.7 dB</span></th><td><img src="spec/p232_223/noisy.png" alt="noisy spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_223/noisy.wav"></audio></td><td><img src="spec/p232_223/sgmse.png" alt="sgmse spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_223/sgmse.wav"></audio></td><td><img src="spec/p232_223/flowse_lee.png" alt="flowse_lee spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_223/flowse_lee.wav"></audio></td><td><img src="spec/p232_223/proposed.png" alt="proposed spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_223/proposed.wav"></audio></td><td><img src="spec/p232_223/clean.png" alt="clean spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_223/clean.wav"></audio></td></tr>
+<tr><th scope="row">p232_109<br><span class="meta">speaker p232, input SNR 16.6 dB</span></th><td><img src="spec/p232_109/noisy.png" alt="noisy spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_109/noisy.wav"></audio></td><td><img src="spec/p232_109/sgmse.png" alt="sgmse spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_109/sgmse.wav"></audio></td><td><img src="spec/p232_109/flowse_lee.png" alt="flowse_lee spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_109/flowse_lee.wav"></audio></td><td><img src="spec/p232_109/proposed.png" alt="proposed spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_109/proposed.wav"></audio></td><td><img src="spec/p232_109/clean.png" alt="clean spectrogram" loading="lazy"><audio controls preload="none" src="audio/p232_109/clean.wav"></audio></td></tr>
+<tr><th scope="row">p257_135<br><span class="meta">speaker p257, input SNR 1.6 dB</span></th><td><img src="spec/p257_135/noisy.png" alt="noisy spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_135/noisy.wav"></audio></td><td><img src="spec/p257_135/sgmse.png" alt="sgmse spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_135/sgmse.wav"></audio></td><td><img src="spec/p257_135/flowse_lee.png" alt="flowse_lee spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_135/flowse_lee.wav"></audio></td><td><img src="spec/p257_135/proposed.png" alt="proposed spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_135/proposed.wav"></audio></td><td><img src="spec/p257_135/clean.png" alt="clean spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_135/clean.wav"></audio></td></tr>
+<tr><th scope="row">p257_012<br><span class="meta">speaker p257, input SNR 6.8 dB</span></th><td><img src="spec/p257_012/noisy.png" alt="noisy spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_012/noisy.wav"></audio></td><td><img src="spec/p257_012/sgmse.png" alt="sgmse spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_012/sgmse.wav"></audio></td><td><img src="spec/p257_012/flowse_lee.png" alt="flowse_lee spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_012/flowse_lee.wav"></audio></td><td><img src="spec/p257_012/proposed.png" alt="proposed spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_012/proposed.wav"></audio></td><td><img src="spec/p257_012/clean.png" alt="clean spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_012/clean.wav"></audio></td></tr>
+<tr><th scope="row">p257_011<br><span class="meta">speaker p257, input SNR 12.0 dB</span></th><td><img src="spec/p257_011/noisy.png" alt="noisy spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_011/noisy.wav"></audio></td><td><img src="spec/p257_011/sgmse.png" alt="sgmse spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_011/sgmse.wav"></audio></td><td><img src="spec/p257_011/flowse_lee.png" alt="flowse_lee spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_011/flowse_lee.wav"></audio></td><td><img src="spec/p257_011/proposed.png" alt="proposed spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_011/proposed.wav"></audio></td><td><img src="spec/p257_011/clean.png" alt="clean spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_011/clean.wav"></audio></td></tr>
+<tr><th scope="row">p257_006<br><span class="meta">speaker p257, input SNR 16.9 dB</span></th><td><img src="spec/p257_006/noisy.png" alt="noisy spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_006/noisy.wav"></audio></td><td><img src="spec/p257_006/sgmse.png" alt="sgmse spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_006/sgmse.wav"></audio></td><td><img src="spec/p257_006/flowse_lee.png" alt="flowse_lee spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_006/flowse_lee.wav"></audio></td><td><img src="spec/p257_006/proposed.png" alt="proposed spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_006/proposed.wav"></audio></td><td><img src="spec/p257_006/clean.png" alt="clean spectrogram" loading="lazy"><audio controls preload="none" src="audio/p257_006/clean.wav"></audio></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h2>Methods</h2>
+  <p class="note">Baselines were run with the authors' public code and checkpoints, default
+  settings, and a fixed random seed (0). All models were trained on the VB-DMD training set at 16&nbsp;kHz.</p>
+  <ul class="note">
+<li><b>SGMSE+ [1]</b>: J. Richter, S. Welker, J.-M. Lemercier, B. Lay, T. Gerkmann,
+  &ldquo;Speech enhancement and dereverberation with diffusion-based generative models,&rdquo;
+  IEEE/ACM TASLP, 2023. Official VB-DMD checkpoint
+  (<a href="https://github.com/sp-uhh/sgmse">sp-uhh/sgmse</a>, <code>train_vb_29nqe0uh_epoch=115.ckpt</code>),
+  default predictor-corrector sampler with 30 steps and one corrector step (60 NFE).</li>
+<li><b>FlowSE [2]</b>: S. Lee, S. Cheong, S. Han, and J. W. Shin,
+  &ldquo;FlowSE: Flow matching-based speech enhancement,&rdquo; ICASSP 2025. Official VB-DMD checkpoint
+  (<a href="https://github.com/seongq/flowmse">seongq/flowmse</a>, <code>VB_DMD_FLOWSE_ICASSP_2025.ckpt</code>),
+  Euler solver with 5 steps (5 NFE).</li>
+<li><b>FlowSE (LRA, proposed)</b>: the skip-free waveform-domain backbone with latent representation
+  alignment described in the paper, Euler solver with 5 steps (5 NFE).</li>
+</ul>
+</main>
+</body>
+</html>
